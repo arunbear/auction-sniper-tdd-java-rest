@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class AuctionServiceConfig {
+public class RemoteAuctionServiceConfig {
 
     public static final String BIDDER_ENDPOINT = "/auction/bidder";
     @Value("${auction-service.url}")

@@ -7,7 +7,7 @@ import com.maciejwalkowiak.wiremock.spring.EnableWireMock;
 import com.maciejwalkowiak.wiremock.spring.InjectWireMock;
 import io.restassured.RestAssured;
 import org.apache.http.HttpStatus;
-import org.example.auctionsniper.config.AuctionServiceConfig;
+import org.example.auctionsniper.config.RemoteAuctionServiceConfig;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Value;
@@ -56,13 +56,13 @@ class AuctionSniperApplicationTests {
 
     void auctionStartsSellingItem() {
         wiremock
-            .stubFor(post(AuctionServiceConfig.BIDDER_ENDPOINT)
+            .stubFor(post(RemoteAuctionServiceConfig.BIDDER_ENDPOINT)
             .willReturn(ResponseDefinitionBuilder.okForEmptyJson()));
 }
 
     void auctionHasReceivedJoinRequestFromSniper() {
         wiremock.verify(1,
             postRequestedFor(
-                urlEqualTo(AuctionServiceConfig.BIDDER_ENDPOINT)));
+                urlEqualTo(RemoteAuctionServiceConfig.BIDDER_ENDPOINT)));
     }
 }

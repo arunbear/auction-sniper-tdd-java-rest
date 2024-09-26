@@ -1,6 +1,6 @@
 package org.example.auctionsniper;
 
-import org.example.auctionsniper.config.AuctionServiceConfig;
+import org.example.auctionsniper.config.RemoteAuctionServiceConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -16,11 +16,11 @@ import java.util.Map;
 @RestController
 public class Controller {
 
-    private final AuctionServiceConfig auctionServiceConfig;
+    private final RemoteAuctionServiceConfig remoteAuctionServiceConfig;
 
     @Autowired
-    public Controller(AuctionServiceConfig auctionServiceConfig) {
-        this.auctionServiceConfig = auctionServiceConfig;
+    public Controller(RemoteAuctionServiceConfig remoteAuctionServiceConfig) {
+        this.remoteAuctionServiceConfig = remoteAuctionServiceConfig;
     }
 
     @GetMapping(value = "/")
@@ -31,8 +31,8 @@ public class Controller {
 
     private void joinAuction() throws IOException, InterruptedException {
         String joinAuctionUri = "%s%s".formatted(
-            auctionServiceConfig.getServiceUri(),
-            AuctionServiceConfig.BIDDER_ENDPOINT
+            remoteAuctionServiceConfig.getServiceUri(),
+            RemoteAuctionServiceConfig.BIDDER_ENDPOINT
         );
 
         HttpClient httpClient = HttpClient.newBuilder().build();
