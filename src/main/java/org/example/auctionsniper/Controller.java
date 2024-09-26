@@ -30,8 +30,10 @@ public class Controller {
     }
 
     private void joinAuction() throws IOException, InterruptedException {
-        String joinAuctionUri = "%s/auction/bidder"
-            .formatted(auctionServiceConfig.getServiceUri());
+        String joinAuctionUri = "%s%s".formatted(
+            auctionServiceConfig.getServiceUri(),
+            AuctionServiceConfig.BIDDER_ENDPOINT
+        );
 
         HttpClient httpClient = HttpClient.newBuilder().build();
         HttpRequest httpRequest = HttpRequest.newBuilder()
