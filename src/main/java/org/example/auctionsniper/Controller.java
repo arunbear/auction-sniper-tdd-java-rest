@@ -26,7 +26,7 @@ public class Controller {
     @GetMapping(value = "/")
     public @ResponseBody Map<String, String> defaultRoute() throws IOException, InterruptedException {
         joinAuction();
-        return Map.of("status", "JOINING");
+        return Map.of("status", "LOST");
     }
 
     private void joinAuction() throws IOException, InterruptedException {
