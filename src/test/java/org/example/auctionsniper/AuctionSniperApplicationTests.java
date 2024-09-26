@@ -50,7 +50,7 @@ class AuctionSniperApplicationTests {
             .then()
             .log().body()
             .statusCode(equalTo(HttpStatus.SC_OK))
-            .body("status", equalTo("LOST"));
+            .body("status", equalTo(AuctionStatus.LOST.toString()));
     }
 
     void auctionStartsSellingItem() {
